@@ -3,9 +3,10 @@
 # SPDX short identifier: BSD-3-Clause
 ---
 
-- name: Ensure telnet server is not installed (CIS)
+- name: Ensure telnet server and client are not installed (CIS)
   become: true
   ansible.builtin.package:
     name:
+      - 'telnet'
       - 'telnet-server'
     state: absent
