@@ -3,10 +3,20 @@
 # SPDX short identifier: BSD-3-Clause
 ---
 
-- name: Ensure telnet server and client are not installed (CIS)
-  become: true
-  ansible.builtin.package:
-    name:
-      - 'telnet'
-      - 'telnet-server'
-    state: absent
+# We put the entire role in a block so we can create
+# a role specific tag, which saves the caller from
+# having to do so in their playbook.
+- name: Role foolean/telnet
+  block:
+
+    - name: Ensure telnet server and client are not installed (CIS)
+      become: true
+      ansible.builtin.package:
+        name:
+          - 'telnet'
+          - 'telnet-server'
+        state: absent
+
+  # Tags to be applied to this role (block)
+  tags:
+    - 'role_foolean_telnet'
