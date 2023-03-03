@@ -9,12 +9,15 @@
 - name: Role foolean/telnet
   block:
 
-    - name: Ensure telnet server and client are not installed (CIS)
+    - name: CIS | Ensure telnet server and client are not installed
       become: true
       ansible.builtin.package:
         name:
           - 'telnet'
+          - 'telnetd'
           - 'telnet-server'
+          - 'telnet-ssl'
+          - 'telnetd-ssl'
         state: absent
 
   # Tags to be applied to this role (block)
